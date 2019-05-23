@@ -1,0 +1,39 @@
+/*
+ * THIS SOFTWARE AND THE DOCUMENTATION IS CREATED AND OWNED BY STIBO SYSTEMS A/S.
+ * ALL RIGHTS ARE RESERVED BY STIBO SYSTEMS. USE OF THE SOFTWARE AND DOCUMENTATION
+ * IS ONLY ALLOWED ACCORDING TO YOUR AGREEMENT WITH STIBO SYSTEMS OR AN AUTHORISED
+ * RESELLER. ANY UNAUTHORISED USE, COPYING OR REVERSE ENGINEERING WILL CONSTITUTE
+ * AN INFRINGEMENT OF COPYRIGHT. STIBO SYSTEMS MAKES NO REPRESENTATION TO THE
+ * APPROPRIATENESS OR FITNESS FOR PURPOSE.
+ */
+
+// Setup of version, dependencies, imports, names...
+
+version = '1.0.0'
+
+dependencies {
+	compile	'com.stibo:com.stibo.core.domain:latest.integration'
+	compile	'com.stibo:com.stibo.framework:latest.integration'
+	compile	'com.stibo:com.stibo.outbound.businessactionpreprocessor:latest.integration'
+}
+
+jar {
+	manifest {
+		// symbolicName is the name of the jar file; it is also used by SPOT when patching a STEP system.
+
+		//uncomment following line, and rename to an appropriate value
+		//def jarName = "com.example.businessrule"
+		symbolicName = jarName
+    	archiveName = "${jarName}-${version}.jar"
+        
+		// Must match the component name used when packaging the partner component with SPOT.
+
+		//uncomment following line, and rename to an appropriate value
+		//def stiboOsgiComponentName = "partnername-businessrules"
+		instruction 'StiboOSGiComponent', "$stiboOsgiComponentName"
+
+		instruction 'Import-Package',
+		            '''com.stibo.*,
+                       javax.*'''
+	}
+}
